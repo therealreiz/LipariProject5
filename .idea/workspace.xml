@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectId" id="liparibank-day5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="BankConsole" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.lipari.bank.cli.BankConsole" />
+      <module name="liparibank-broken-day5" />
+    </configuration>
+  </component>
+</project>
