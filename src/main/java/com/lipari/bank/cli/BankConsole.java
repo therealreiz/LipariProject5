@@ -7,17 +7,11 @@ import com.lipari.bank.persistence.DatabaseManager;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * Entry point del progetto LipariBank — Day 5.
- *
- * <p>Dimostra i problemi Git del progetto:
- * <ol>
- *   <li>.gitignore inefficace per file già tracciati  — BUG #1</li>
- *   <li>Conflict markers non risolti                  — BUG #2</li>
- *   <li>Percorso assoluto nel DatabaseManager         — BUG #3</li>
- * </ol>
  */
 public class BankConsole {
 
@@ -38,7 +32,6 @@ public class BankConsole {
         printReport();
     }
 
-    // ── Dati di esempio ───────────────────────────────────────────────────────
     private void insertSampleData() throws SQLException {
         try (Connection conn = DatabaseManager.getConnection()) {
             try (PreparedStatement ps = conn.prepareStatement(
@@ -69,7 +62,6 @@ public class BankConsole {
         ps.executeUpdate();
     }
 
-    // ── Caricamento dati dal DB ───────────────────────────────────────────────
     private void loadData() throws SQLException {
         try (Connection conn = DatabaseManager.getConnection();
              Statement  stmt = conn.createStatement()) {
@@ -96,7 +88,7 @@ public class BankConsole {
         }
     }
 
-    // ── Report ────────────────────────────────────────────────────────────────
+<<<<<<< HEAD
     /**
      * Stampa il riepilogo dei clienti.
      *
@@ -117,4 +109,33 @@ public class BankConsole {
         System.out.printf("  Totale clienti: %d  |  Totale conti: %d%n",
                 customers.size(), accounts.size());
     }
+=======
+    /**
+     * Stampa il riepilogo dei clienti.
+     *
+     * <p>Versione avanzata — ordinata per cognome, mostra il saldo totale.
+     */
+    public void printReport() {
+        System.out.println("\n── Report Avanzato ──────────────────────────────────────────────────");
+        System.out.printf("%-20s %-25s %12s %10s%n",
+                "Cod. Fiscale", "Nome", "Saldo Tot.", "N. Conti");
+        System.out.println("─".repeat(70));
+        customers.stream()
+                .sorted(Comparator.comparing(Customer::getLastName))
+                .forEach(c -> {
+                    var contiCliente = accounts.stream()
+                            .filter(a -> a.getCustomerId() == c.getId())
+                            .toList();
+                    var saldoTotale = contiCliente.stream()
+                            .map(Account::getBalance)
+                            .reduce(BigDecimal.ZERO, BigDecimal::add);
+                    System.out.printf("%-20s %-25s %12.2f\u20AC %10d%n",
+                            c.getFiscalCode(), c.getFullName(),
+                            saldoTotale, contiCliente.size());
+                });
+        System.out.println("─".repeat(70));
+        System.out.printf("  Totale clienti: %d  |  Totale conti: %d%n",
+                customers.size(), accounts.size());
+    }
+>>>>>>> feature/advanced-reporting
 }
