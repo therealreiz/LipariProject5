@@ -4,17 +4,9 @@ import java.sql.*;
 
 /**
  * Gestisce la connessione al database H2.
- *
- * <p>BUG #3 — PERCORSO ASSOLUTO: l'URL del database punta a un percorso
- * assoluto sul filesystem di una macchina specifica. Su qualsiasi altro
- * sistema il file non esiste e la connessione fallisce con un errore.
- *
- * <p>Fix: usare un URL in-memory ({@code jdbc:h2:mem:liparibank;DB_CLOSE_DELAY=-1})
- * oppure un percorso relativo al progetto.
  */
 public class DatabaseManager {
 
-    // BUG #3: percorso assoluto hard-coded — non funziona su altri sistemi!
     private static final String URL      = "jdbc:h2:/home/mario.rossi/projects/liparibank/liparibank_db";
     private static final String USER     = "sa";
     private static final String PASSWORD = "";
