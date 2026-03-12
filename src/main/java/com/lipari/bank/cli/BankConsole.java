@@ -87,29 +87,6 @@ public class BankConsole {
             }
         }
     }
-
-<<<<<<< HEAD
-    /**
-     * Stampa il riepilogo dei clienti.
-     *
-     * <p>Versione semplice — una riga per cliente con numero di conti.
-     */
-    public void printReport() {
-        System.out.println("\n── Report Clienti ───────────────────────────────────");
-        System.out.printf("%-20s %-25s %10s%n", "Cod. Fiscale", "Nome", "N. Conti");
-        System.out.println("─".repeat(57));
-        for (Customer c : customers) {
-            long nConti = accounts.stream()
-                    .filter(a -> a.getCustomerId() == c.getId())
-                    .count();
-            System.out.printf("%-20s %-25s %10d%n",
-                    c.getFiscalCode(), c.getFullName(), nConti);
-        }
-        System.out.println("─".repeat(57));
-        System.out.printf("  Totale clienti: %d  |  Totale conti: %d%n",
-                customers.size(), accounts.size());
-    }
-=======
     /**
      * Stampa il riepilogo dei clienti.
      *
@@ -137,5 +114,4 @@ public class BankConsole {
         System.out.printf("  Totale clienti: %d  |  Totale conti: %d%n",
                 customers.size(), accounts.size());
     }
->>>>>>> feature/advanced-reporting
 }

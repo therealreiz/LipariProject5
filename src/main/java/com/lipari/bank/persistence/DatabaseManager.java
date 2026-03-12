@@ -7,7 +7,7 @@ import java.sql.*;
  */
 public class DatabaseManager {
 
-    private static final String URL      = "jdbc:h2:/home/mario.rossi/projects/liparibank/liparibank_db";
+    private static final String URL      = "jdbc:h2:./liparibank.db";
     private static final String USER     = "sa";
     private static final String PASSWORD = "";
 
